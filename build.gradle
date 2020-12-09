@@ -1,1 +1,11 @@
 apply plugin: 'java'
+
+jar {
+    manifest{
+            attributes(
+                    "Implementation-Title": "Leader",
+                    "Implementation-Version": "1.0.0",
+                    "Main-Class": "leader.Main"
+            )
+    }
+}

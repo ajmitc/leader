@@ -2,22 +2,52 @@ package leader.view;
 
 import leader.Model;
 
-public abstract class View
-{
-	protected Model _model;
-	protected GameMenu _mainMenu;
-	
-	public View( Model model )
-	{
-		_model = model;
-		_mainMenu = new GameMenu( "Leader" );
-		GameMenuItem item = new GameMenuItem( "New Game" );
-		_mainMenu.getItems().add( item );
-		item = new GameMenuItem( "Exit" );
-		_mainMenu.getItems().add( item );
-	}
-	
-	public abstract void displayMainMenu();
-	
-	public GameMenu getMainMenu(){ return _mainMenu; }
+import javax.swing.*;
+import java.awt.*;
+
+public class View {
+    private static final String MAINMENU = "MainMenu";
+    private static final String GAME = "Game";
+
+    protected Model model;
+    private JFrame frame;
+    private RootPanel rootPanel;
+    private MainMenuPanel mainMenuPanel;
+    private GamePanel gamePanel;
+
+    public View(Model model) {
+        this.model = model;
+        frame = new JFrame();
+        frame.setTitle("Leader");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(800, 600);
+
+        rootPanel = new RootPanel();
+        frame.getContentPane().add(rootPanel, BorderLayout.CENTER);
+
+        mainMenuPanel = new MainMenuPanel(model, this);
+        rootPanel.add(mainMenuPanel, MAINMENU);
+
+        gamePanel = new GamePanel(model, this);
+        rootPanel.add(gamePanel, GAME);
+    }
+
+    public void refresh(){
+        gamePanel.refresh();
+    }
+
+    public void showMainMenu(){
+        rootPanel.showPanel(MAINMENU);
+    }
+
+    public void showGame(){
+        rootPanel.showPanel(GAME);
+        gamePanel.refresh();
+    }
+
+    public GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
+    public JFrame getFrame(){return frame;}
 }
