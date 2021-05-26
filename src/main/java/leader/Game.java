@@ -59,6 +59,10 @@ public class Game{
         return gameover;
     }
 
+    public void setGameover(boolean gameover) {
+        this.gameover = gameover;
+    }
+
     private void init() {
 
     }
