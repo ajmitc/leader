@@ -15,7 +15,9 @@ public enum CommandType {
     // set <what> [<what>] <attr> <value>
     // ie. > set kingdom name "My Kingdom"
     // ie. > set town "Existing Town" name "New Name"
-    SET(new String[]{"set, rename"}, "Set/rename an attribute in the game")
+    SET(new String[]{"set"}, "Set/rename an attribute in the game"),
+
+    GRIEVANCES(new String[]{"g", "grievances"}, "Handle grievances of the people")
     ;
 
     private String[] allowedInput;

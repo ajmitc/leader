@@ -1,4 +1,4 @@
-package leader;
+package leader.game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +51,11 @@ public class Kingdom {
 
     public List<Town> getTowns() {
         return towns;
+    }
+
+    public Town getTown(String name){
+        Optional<Town> opt = towns.stream().filter(town -> town.getName().equalsIgnoreCase(name)).findFirst();
+        return opt.isPresent()? opt.get(): null;
     }
 
     public Town getCapital(){

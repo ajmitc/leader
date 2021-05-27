@@ -1,4 +1,4 @@
-package leader.population;
+package leader.game.population;
 
 public enum PersonStruct {
     // Person attributes  (bitoffset, bitlen)

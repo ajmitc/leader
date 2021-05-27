@@ -1,8 +1,8 @@
-package leader;
+package leader.game;
 
-import leader.population.PersonAttribute;
-import leader.population.Population;
-import leader.population.PersonStruct;
+import leader.game.population.PersonAttribute;
+import leader.game.population.Population;
+import leader.game.population.PersonStruct;
 import leader.util.Util;
 
 import java.util.Map;

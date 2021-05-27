@@ -1,4 +1,4 @@
-package leader.event;
+package leader.game.event;
 
 import java.util.LinkedList;
 import java.util.logging.Logger;

@@ -1,9 +1,12 @@
-package leader;
+package leader.game;
 
-import leader.event.GameEventProducer;
-import leader.population.PersonAttribute;
+import leader.game.event.GameEventProducer;
+import leader.game.grievance.Grievance;
+import leader.game.population.PersonAttribute;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -14,15 +17,15 @@ public class Game{
 
     public static final int AGE_ADVANCEMENT_DURATION = TICKS_PER_YEAR * 10;
 
-    public static final double ELDERLY_DEATH_PERCENTAGE = 0.9;  // Percent chance an elderly person dies  (higher percentage means shorter lifespan)
-    public static final double ADULT_DEATH_PERCENTAGE = 0.1;  // Percent chance an adult dies
-    public static final double ADOLESCENT_DEATH_PERCENTAGE = 0.05; // Percent chance an adolescent dies
-    public static final double CHILD_DEATH_PERCENTAGE = 0.1;
+    public static final double ELDERLY_DEATH_PERCENTAGE = 0.5;  // Percent chance an elderly person dies  (higher percentage means shorter lifespan)
+    public static final double ADULT_DEATH_PERCENTAGE = 0.02;  // Percent chance an adult dies
+    public static final double ADOLESCENT_DEATH_PERCENTAGE = 0.01; // Percent chance an adolescent dies
+    public static final double CHILD_DEATH_PERCENTAGE = 0.01;
 
     public static final double ADULT_PROCREATION_PERCENTAGE = 0.8; // Percentage of adult population trying to procreate
     public static final double FERTILITY_PERCENTAGE = 0.1; // Likelihood that an adult couple will conceive a child
-    public static final double IN_UTERO_DEATH_PERCENTAGE = 0.1; // Likelihood that a pregnancy will abort or end in still-birth
-    public static final double INFANT_MORTALITY_PERCENTAGE = 0.1; // Likelihood a newborn will die (evaluated immediately after birth)
+    public static final double IN_UTERO_DEATH_PERCENTAGE = 0.20; // Likelihood that a pregnancy will abort or end in still-birth
+    public static final double INFANT_MORTALITY_PERCENTAGE = 0.10; // Likelihood a newborn will die (evaluated immediately after birth)
 
     private boolean gameover;
     private GameEventProducer gameEventProducer;
@@ -36,6 +39,8 @@ public class Game{
     private double fertilityRate;
     private double inUteroDeathRate;
     private double infantMortalityRate;
+
+    private List<Grievance> grievances = new ArrayList<>();
 
     public Game(GameEventProducer producer) {
         gameover = false;
@@ -131,5 +136,13 @@ public class Game{
 
     public void setInfantMortalityRate(double v) {
         infantMortalityRate = v;
+    }
+
+    public List<Grievance> getGrievances() {
+        return grievances;
+    }
+
+    public void setGrievances(List<Grievance> grievances) {
+        this.grievances = grievances;
     }
 }

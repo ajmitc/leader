@@ -1,6 +1,9 @@
 package leader;
 
-import leader.event.*;
+import leader.game.event.*;
+import leader.game.Game;
+import leader.game.grievance.GrievanceEventGenerator;
+import leader.game.population.AgeAdvancementEventGenerator;
 
 import java.util.logging.Logger;
 
@@ -22,6 +25,8 @@ public class Model implements GameEventProducer {
 		this.gameEventQueueThread.execute();
 
 		this.gameEventGenerator = new GameEventGenerator(this);
+		this.gameEventGenerator.addGameEventGenerator(new AgeAdvancementEventGenerator());
+		this.gameEventGenerator.addGameEventGenerator(new GrievanceEventGenerator());
 		this.gameEventGenerator.execute();
 	}
 

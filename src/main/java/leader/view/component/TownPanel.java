@@ -1,10 +1,9 @@
 package leader.view.component;
 
 import leader.Model;
-import leader.Town;
-import leader.population.PersonAttribute;
-import leader.population.PopulationStatistics;
-import leader.population.PersonStruct;
+import leader.game.Town;
+import leader.game.population.PersonAttribute;
+import leader.game.population.PopulationStatistics;
 import leader.util.GridBagBuilder;
 import leader.view.View;
 

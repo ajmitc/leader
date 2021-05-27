@@ -1,4 +1,4 @@
-package leader.event;
+package leader.game.event;
 
 import javax.swing.*;
 import java.util.ArrayList;

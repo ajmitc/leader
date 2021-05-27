@@ -1,4 +1,4 @@
-package leader.population;
+package leader.game.population;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -51,6 +51,41 @@ public class Population {
             people.add(addRandomPerson(age));
         }
         return people;
+    }
+
+    public List<byte[]> findPersons(PersonAttribute... filters){
+        List<byte[]> matchingPersons = new ArrayList<>();
+        for (byte[] person: persons){
+            boolean matches = true;
+            for (PersonAttribute filter: filters){
+                switch (filter){
+                    case MALE:
+                    case FEMALE:{
+                        matches = unpack(person, PersonStruct.GENDER) == filter;
+                        break;
+                    }
+                    case ELDERLY:
+                    case ADULT:
+                    case ADOLESCENT:
+                    case CHILD:{
+                        matches = unpack(person, PersonStruct.AGE) == filter;
+                        break;
+                    }
+                }
+                if (!matches)
+                    break;
+            }
+            if (matches)
+                matchingPersons.add(person);
+        }
+        return null;
+    }
+
+    public byte[] findRandomPerson(PersonAttribute ... filters){
+        List<byte[]> matchingPersons = findPersons(filters);
+        if (matchingPersons.isEmpty())
+            return null;
+        return matchingPersons.get(Util.randInt(matchingPersons.size()));
     }
 
     public PopulationStatistics generateStats() {
@@ -197,6 +232,15 @@ public class Population {
                 mask >>= 1;
             }
         }
+        return sb.toString();
+    }
+
+    public static String summarizePerson(byte[] person){
+        StringBuilder sb = new StringBuilder();
+        Map<PersonStruct, PersonAttribute> map = decode(person);
+        sb.append(map.get(PersonStruct.AGE).toString());
+        sb.append(" ");
+        sb.append(map.get(PersonStruct.GENDER).toString());
         return sb.toString();
     }
 }

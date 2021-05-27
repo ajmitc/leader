@@ -1,9 +1,18 @@
-package leader.population;
+package leader.game.population;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class PopulationStatistics {
+    public static final PersonAttribute[] STAT_ORDER = {
+            PersonAttribute.MALE,
+            PersonAttribute.FEMALE,
+
+            PersonAttribute.ELDERLY,
+            PersonAttribute.ADULT,
+            PersonAttribute.ADOLESCENT,
+            PersonAttribute.CHILD
+    };
     private Map<PersonAttribute, Double> _stats;
 
     public PopulationStatistics() {

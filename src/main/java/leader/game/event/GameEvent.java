@@ -1,22 +1,20 @@
-package leader.event;
+package leader.game.event;
 
 public class GameEvent {
-    public static final int TYPE_ADVANCE_TICK = 0;
-
-    private int type;
+    private GameEventType type;
     private Object source;
     private Object data;
 
     // If consumed == true, do not continue sending it to listeners
     private boolean consumed = false;
 
-    public GameEvent(int type, Object source, Object data){
+    public GameEvent(GameEventType type, Object source, Object data){
         this.type = type;
         this.source = source;
         this.data = data;
     }
 
-    public int getType() {
+    public GameEventType getType() {
         return type;
     }
 

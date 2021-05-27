@@ -1,7 +1,7 @@
 package leader.view;
 
 import leader.Model;
-import leader.Town;
+import leader.game.Town;
 import leader.view.component.HeadingLabel;
 import leader.view.component.NormalLabel;
 
